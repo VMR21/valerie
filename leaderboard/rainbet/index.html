@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ValerieStreamz</title>
+    <link rel="icon" href="https://files.kick.com/images/user/62390093/profile_image/conversion/3007d440-fa8c-437d-8fd0-d3059b8c5ef5-fullsize.webp" type="image/png"> <!-- Placeholder for logo.png -->
+    <meta name="description" content="ValerieStreamz offers the best casino experience and rewards!">
+    <meta name="keywords" content="casino, gambling, rewards, leaderboard">
+    <meta name="author" content="ValerieStreamz - Leaderboard">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ValerieStreamz - Leaderboard">
+    <meta property="og:description" content="ValerieStreamz offers the best casino experience and rewards!">
+    <meta property="og:url" content="{currentUrl}">
+    <meta property="og:image" content="{screenshotUrl}">
+    <meta property="twitter:url" content="{currentUrl}">
+    <meta property="twitter:image" content="{screenshotUrl}">
+    <!-- Font Awesome link for icons - Corrected integrity attribute -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        xintegrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* Font imports and global resets */
+        @import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap');
+
+        * {
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+            list-style: none;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: "Host Grotesk", sans-serif;
+        }
+
+        /* Root variables with pinkish theme */
+        :root {
+            --secondary-font: "Sedgwick Ave", cursive;
+            --white-color: #FCE7F6; /* Light pinkish white */
+            --black-color: black; /* Standard black, can be adjusted if needed */
+
+            --secondary-color: #FF69B4; /* Hot Pink for primary accents */
+            --not-white: #FFE5EC; /* Soft light pink */
+
+            /* New custom colors for the girly theme */
+            --dark-bg-main: #1a0f1e; /* Very dark plum/purple-ish black for body background */
+            --dark-bg-sidebar: #2C0B29; /* Dark muted purple for sidebar/card background */
+            --border-color: #4A1E45; /* Darker muted purple for borders/separators */
+            --text-light-grey: #CBBFD4; /* Light muted purple-grey for secondary text */
+            --gold-accent: #F7DC6F; /* A warmer, slightly golden yellow */
+        }
+
+        body {
+            background-color: var(--dark-bg-main); /* Using new dark plum background */
+        }
+
+        .d-flex {
+            display: flex;
+        }
+
+        .align-center {
+            align-items: center;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .col-1 {
+            flex: 1;
+        }
+
+        .col-2 {
+            flex: 2;
+        }
+
+        .col3 {
+            flex: 3;
+        }
+
+        .col-4 {
+            flex: 4;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px 10px;
+        }
+
+        /* When Sidebar is closed */
+        aside .min-hei{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 95vh;
+        }
+        aside .logo {
+            text-align: center;
+            justify-content: center;
+            gap: 3px !important;
+            margin-bottom: 36px !important;
+        }
+
+        aside .logo .purple {
+            font-family: var(--secondary-font);
+            font-weight: 400;
+            font-size: 28px;
+            line-height: 20px;
+            letter-spacing: 0%;
+            color: var(--secondary-color); /* Hot pink */
+        }
+
+        aside .logo .white {
+            font-weight: 800;
+            font-size: 28px;
+            line-height: 20px;
+            letter-spacing: 0%;
+            color: var(--white-color); /* Light pinkish white */
+        }
+
+        aside.sidebar.closed .nav-links li a {
+            justify-content: center;
+        }
+
+        aside.sidebar.closed .nav-links li a span {
+            display: none;
+        }
+
+        aside.sidebar.closed .nav-links li a i {
+            margin-right: 0;
+        }
+
+        .nav-links li a {
+            display: flex;
+            align-items: center;
+            color: var(--text-light-grey); /* Light muted purple-grey */
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links li a i {
+            width: 20px;
+            text-align: center;
+        }
+
+        aside.sidebar.closed .nav-links li {
+            text-align: center;
+        }
+
+        .nav-links li img {
+            width: 15px;
+            height: 15px;
+            padding: 1px;
+        }
+
+        /* Sidebar Styling */
+        aside.sidebar {
+            width: 256px;
+            background: var(--dark-bg-sidebar); /* Dark muted purple */
+            padding: 20px 0px 10px 0px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+            z-index: 999999999 !important;
+            border-right: 1px solid var(--border-color); /* Darker muted purple */
+            transition: width 0.4s cubic-bezier(0.05, 0.7, 0.1, 1);
+            overflow-x: hidden;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        aside.sidebar.closed {
+            position: relative;
+            padding: 20px 0px 10px 0px;
+            width: 50px;
+        }
+
+        aside.sidebar .fa-arrow-right,
+        aside.sidebar .fa-bars {
+            color: var(--white-color); /* Light pinkish white */
+        }
+
+        aside.sidebar.closed .search-bar,
+        aside.sidebar.closed .footer-links a {
+            display: none;
+        }
+
+        aside.sidebar.closed .nav-links li a span {
+            opacity: 0;
+            transform: translateX(10px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            display: none;
+        }
+
+        aside.sidebar.closed .nav-links li a i {
+            margin-right: 0;
+        }
+
+        aside.sidebar.closed .branding a p {
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 20px;
+            letter-spacing: 0%;
+            color: var(--text-light-grey); /* Light muted purple-grey */
+        }
+
+        aside.sidebar .flexGrid {
+            display: flex;
+            align-items: center !important;
+            justify-content: center;
+            padding: 0px 11px;
+            margin-bottom: 16px;
+            margin-top: 6px;
+        }
+
+        /* Toggle Button */
+        .toggle-btn {
+            position: relative;
+            border: none;
+            background-color: var(--border-color); /* Darker muted purple */
+            width: 30px;
+            height: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .toggle-btn:hover {
+            background-color: #6a2a65; /* Slightly lighter muted purple */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .toggle-btn i {
+            transition: transform 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+        }
+
+        .sidebar:not(.closed) .toggle-btn i {
+            transform: rotate(180deg);
+        }
+
+        .toggle-btn.closed {
+            margin-left: 40px !important;
+        }
+
+        aside.sidebar .fa-arrow-right,
+        aside.sidebar .fa-arrow-left {
+            color: #AF8B9A !important; /* Muted pink-grey */
+        }
+
+        /* Navigation Links */
+        aside .nav-links {
+            list-style: none;
+        }
+
+        aside .nav-links li a {
+            display: flex;
+            align-items: center;
+            color: var(--white-color); /* Light pinkish white */
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            gap: 10px;
+            padding: 10px 6px;
+            border-radius: 8px;
+            margin: 0px 10px;
+            margin-bottom: 5px;
+            font-size: 12px;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        aside .nav-links li a span {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+            transform: translateX(0);
+            white-space: nowrap;
+        }
+
+        .sidebar.closed .nav-links li a {
+            margin: 0px 5px !important;
+            justify-content: center;
+        }
+
+        aside.sidebar .flexGrid {
+            justify-content: end;
+        }
+
+        aside.sidebar .flexGrid i {
+            font-size: 15px !important;
+            color: var(--white-color); /* Light pinkish white */
+        }
+
+        aside.sidebar.closed .flexGrid {
+            padding: 0px 6px;
+            margin-bottom: 10px;
+            padding-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        aside .nav-links li a.condition img {
+            width: 16px !important;
+        }
+
+        aside .nav-links li a.exit img {
+            width: 18px;
+        }
+
+        aside .nav-links li:hover a,
+        aside .nav-links li.active a {
+            color: #ffffff; /* Pure white on hover/active */
+            background: rgba(255, 105, 180, 0.2); /* Hot Pink with transparency */
+            box-shadow: 0px 1px 0px 0px rgba(255, 105, 180, 0.1) inset; /* Hot Pink with transparency */
+        }
+
+        aside .nav-links li:hover a.logo,
+        aside .nav-links .disabled a {
+            background: transparent !important;
+            box-shadow: 0px 0px 0px 0px transparent !important;
+            cursor: pointer !important;
+
+        }
+
+        aside .nav-links li.active a img {
+            max-width: 100%;
+        }
+
+        aside .nav-links .disabled a {
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 20px;
+            cursor: pointer;
+            pointer-events: none;
+            color: #8C6A7B; /* Muted darker pink-grey */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            justify-content: space-between;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            background: linear-gradient(180deg, rgba(26, 15, 22, 0) 89.24%, var(--dark-bg-main) 100%); /* Adjusted gradient */
+            min-height: 100vh;
+            transition: margin-left 0.4s cubic-bezier(0.05, 0.7, 0.1, 1);
+            margin-left: 0px;
+            position: relative;
+        }
+
+        .main-content::after {
+            content: "";
+            background: url(https://img.freepik.com/free-vector/hot-pink-aesthetic-grid-pattern-background_53876-99198.jpg?t=st=1751052282~exp=1751055882~hmac=d0d95423802841e2d20b36cc28ec8172d2a8e0deb82e0332248c343c449c71cb&w=1380) no-repeat center center/cover; /* Placeholder for a pinkish pattern */
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            z-index: -1;
+            opacity: .3; /* Slightly reduce opacity */
+        }
+
+        /* Margin when sidebar is closed */
+        aside.sidebar.closed+.main-content {
+            margin-left: 0px;
+        }
+
+        .main-content .container {
+            max-width: 1088px;
+            margin: auto;
+            padding: 20px 10px; /* Ensure padding on container */
+        }
+
+        .main-content .topRainCoin {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-height: 200px;
+        }
+
+        .main-content .topRainCoin .left_knif {
+            position: absolute;
+            left: 0px;
+            z-index: -1;
+        }
+
+        .main-content .topRainCoin .right_gun {
+            position: absolute;
+            right: 0px;
+            bottom: -100px;
+            z-index: -1;
+        }
+
+        .main-content .topRainCoin .coinDeatiling {
+            gap: 3px;
+        }
+
+        .main-content .topRainCoin .coinDeatiling p {
+            font-weight: 800;
+            font-size: 24px;
+            line-height: 24.33px;
+            letter-spacing: -2%;
+            text-align: center;
+            color: var(--not-white); /* Soft light pink */
+        }
+
+        .main-content .topRainCoin .topMain {
+            font-family: var(--secondary-font);
+            font-weight: 400;
+            font-size: 64px;
+            margin-top: 7px;
+            line-height: 64.89px;
+            color: var(--secondary-color); /* Hot Pink */
+        }
+
+        .main-content .pageShifter {
+            gap: 16px;
+            max-width: 460.00048828125px;
+            width: 100%;
+            min-height: 51px;
+            margin: auto;
+            position: relative;
+            flex-wrap: wrap;
+        }
+
+        .main-content .pageShifter .box {
+            position: relative;
+            max-width: 121px;
+            width: 100%;
+            height: 81px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .main-content .pageShifter .box.active {
+            position: relative;
+        }
+
+        .main-content .pageShifter .box.active::after,
+        .main-content .pageShifter .box:hover::after {
+            content: "";
+            background: url(https://placehold.co/121x81/FF69B4/FFFFFF?text=Active) no-repeat; /* Placeholder for active background */
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            width: 100%;
+            background-size: cover;
+        }
+
+        .main-content .pageShifter .box.active img {
+            width: 88%;
+        }
+        
+        /* New flex layout for winnerBoxes */
+        .main-content .winnerBoxes {
+            margin-top: 90px;
+            gap: 20px; /* Reduced gap for better responsiveness */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Center boxes horizontally */
+            align-items: flex-start; /* Align items to the top for consistent height */
+            margin-bottom: 60px;
+        }
+
+        .main-content .winnerBoxes .mainBox {
+            max-width: 227px;
+            width: 100%;
+            flex-grow: 1; /* Allow boxes to grow */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* Specific ordering for desktop layout */
+        @media (min-width: 768px) {
+            .main-content .winnerBoxes .winner-box-1 {
+                order: 2; /* #1 in center */
+            }
+            .main-content .winnerBoxes .winner-box-2 {
+                order: 1; /* #2 on left */
+            }
+            .main-content .winnerBoxes .winner-box-3 {
+                order: 3; /* #3 on right */
+            }
+            .main-content .winnerBoxes .mainBox {
+                 margin-bottom: 50px; /* Add margin to bottom of each box on desktop */
+            }
+        }
+
+
+        .main-content .winnerBoxes .box {
+            width: 100%; /* Take full width of parent .mainBox */
+            min-height: 367px;
+            border-bottom-right-radius: 113.5px;
+            border-bottom-left-radius: 113.5px;
+            background: rgba(44, 11, 41, 0.4); /* Dark muted purple with transparency */
+            border: 2px dashed var(--border-color); /* Darker muted purple dashed border */
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px; /* Added padding inside the box */
+            border-top: 7px solid rgba(255, 105, 180, 0.25); /* Pink border with transparency */
+        }
+
+        .main-content .winnerBoxes .box .purpleBlur {
+            position: absolute;
+            top: 26%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            width: 100%;
+            background: radial-gradient(circle, rgba(255, 105, 180, 0.3) 0%, rgba(26, 15, 22, 0) 70%);
+            border-radius: 50%;
+            height: 100%;
+        }
+
+        .main-content .winnerBoxes .box h1 {
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 21.28px;
+            letter-spacing: -1%;
+            color: var(--not-white); /* Soft light pink */
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .main-content .winnerBoxes .box p {
+            color: var(--text-light-grey); /* Light muted purple-grey */
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 15.96px;
+            margin-bottom: 6px;
+            text-align: center;
+        }
+
+        .main-content .winnerBoxes .box h2 {
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 26.6px;
+            letter-spacing: -1%;
+            text-align: center;
+            color: var(--not-white); /* Soft light pink */
+            margin-bottom: 18px;
+        }
+
+        .main-content .winnerBoxes .box .winnerProfile {
+            margin-bottom: 16px;
+        }
+
+        .main-content .winnerBoxes .box .topWinner {
+            margin-bottom: 10px;
+        }
+
+        .main-content .winnerBoxes .box h6 {
+            font-family: Host Grotesk;
+            font-weight: 400;
+            font-size: 11px;
+            line-height: 14.63px;
+            margin-bottom: 2px;
+            color: var(--text-light-grey); /* Light muted purple-grey */
+        }
+
+        .main-content .winnerBoxes .box h3 {
+            color: var(--gold-accent); /* Gold accent */
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 26.6px;
+            letter-spacing: -1%;
+            text-align: center;
+        }
+
+        /* Timer Styling */
+        .timer {
+            margin-top: 46px; /* Space from content above */
+            transform: scale(1.0); /* Adjust scale for better fit within boxes */
+            margin-bottom: 30px;
+        }
+
+        .timer .primary-box {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: rgba(74, 30, 69, 0.5); /* Darker muted purple with transparency */
+            border-radius: 8px;
+            padding: 8px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .timer .primary-box p {
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 18px;
+            letter-spacing: 0%;
+            text-align: center;
+            color: var(--not-white); /* Soft light pink */
+            margin: 0;
+        }
+
+        .timer .primary-box p.purple {
+            font-weight: 700;
+            font-size: 12px;
+            line-height: 14px;
+            letter-spacing: 0%;
+            text-align: center;
+            color: var(--secondary-color); /* Hot Pink */
+            margin-top: 2px;
+        }
+
+        .timer h1 {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 18.62px;
+            letter-spacing: 0%;
+            text-align: center;
+            color: var(--text-light-grey); /* Light muted purple-grey */
+            margin-bottom: 16px;
+        }
+
+        .timer h3 {
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 18px;
+            letter-spacing: 0%;
+            color: #9B8C9F; /* Slightly lighter muted purple-grey */
+            margin: 0 4px;
+        }
+
+        .timer .timerBox {
+            gap: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Visibility for timers based on device */
+        .pc-only-timer {
+            display: none; /* Hidden by default on mobile */
+            width: 100%; /* Take full width below the winner box */
+            margin-top: 20px; /* Space between winner box and timer */
+        }
+        .mobile-only-timer-container {
+            display: flex; /* Flex container for mobile timer */
+            justify-content: center;
+            margin-top: 30px; /* Space after winner boxes on mobile */
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .pc-only-timer {
+                display: block; /* Show on desktop */
+            }
+            .mobile-only-timer-container {
+                display: none; /* Hide on desktop */
+            }
+        }
+
+
+        .main-content .winList .topWinList {
+            margin-bottom: 20px;
+            padding: 0px 34px;
+        }
+
+        .main-content .winList .topWinList .box {
+            gap: 40px;
+        }
+
+        @media screen and (max-width: 499.98px) {
+            .main-content .winList .topWinList {
+                padding: 0px 15px;
+            }
+            
+            .main-content .winList .topWinList .box {
+                gap: 10px;
+            }
+            
+            .main-content .winList .topWinList.positionHolders .imagePara p {
+                font-size: 14px;
+            }
+        }
+
+        .main-content .winList .topWinList .box p {
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 100%;
+            letter-spacing: 0%;
+            text-align: center;
+            color: var(--text-light-grey); /* Light muted purple-grey */
+        }
+
+        .main-content .winList .topWinList .box.widthCustom .subBox {
+            width: 130px;
+        }
+
+        .main-content .winList .topWinList.positionHolders p {
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 100%;
+            letter-spacing: 0%;
+            text-align: center;
+            color: var(--text-light-grey); /* Light muted purple-grey */
+        }
+
+        .main-content .winList .topWinList.positionHolders .imagePara {
+            gap: 8px;
+        }
+
+        .main-content .winList .topWinList.positionHolders .imagePara p {
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 100%;
+            letter-spacing: 0%;
+            color: #8C6A7B; /* Muted darker pink-grey */
+        }
+
+        .main-content .winList .topWinList.positionHolders p.white {
+            color: var(--not-white) !important; /* Soft light pink */
+        }
+
+        .main-content .winList .topWinList.positionHolders p.purple {
+            color: var(--secondary-color) !important; /* Hot Pink */
+        }
+
+        .main-content .winList .topWinList.positionHolders {
+            max-width: 1088px;
+            width: 100%;
+            border-radius: 10px;
+            border-width: 1px;
+            background: var(--dark-bg-sidebar); /* Dark muted purple */
+            border: 1px solid var(--border-color); /* Darker muted purple */
+            min-height: 67px;
+        }
+
+        .main-content .pageShifterCounter {
+            gap: 12px;
+            margin-top: 40px;
+        }
+
+        .main-content .pageShifterCounter a {
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            border-radius: 50%;
+            border-width: 1px;
+            gap: 10px;
+            padding: 10px;
+            background: var(--dark-bg-sidebar); /* Dark muted purple */
+            border: 1px solid var(--border-color); /* Darker muted purple */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--not-white); /* Soft light pink */
+            font-size: 12px;
+        }
+
+        .main-content .pageShifterCounter a.dot {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border-width: 1px;
+            gap: 10px;
+            padding: 10px;
+            background: var(--dark-bg-sidebar); /* Dark muted purple */
+            border: 1px solid var(--border-color); /* Darker muted purple */
+        }
+
+        .main-content .pageShifterCounter a.active {
+            background: var(--secondary-color); /* Hot Pink */
+            color: var(--dark-bg-main); /* Dark plum for text on pink background */
+        }
+
+        .main-content footer {
+            margin-top: 60px;
+            background: rgba(26, 15, 22, .2); /* Dark plum with transparency */
+            padding: 50px 10px;
+            border-top: 1px solid var(--border-color); /* Darker muted purple */
+        }
+
+        .main-content footer .row .box {
+            gap: 55px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .main-content footer .row .box a span {
+            font-weight: 800;
+            font-size: 28px;
+            line-height: 20px;
+            letter-spacing: 0%;
+            color: var(--not-white) !important; /* Soft light pink */
+        }
+
+        .main-content footer .row .box a span.purple {
+            font-family: var(--secondary-font);
+            font-weight: 400;
+            font-size: 28px;
+            line-height: 20px;
+            letter-spacing: 0%;
+            color: var(--secondary-color) !important; /* Hot Pink */
+        }
+
+        .main-content footer .logopara {
+            max-width: 255px;
+            width: 100%;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 20px;
+            color: var(--text-light-grey); /* Light muted purple-grey */
+            margin-top: 10px;
+        }
+
+        .main-content footer .row .box h5 {
+            font-weight: 500;
+            font-size: 11px;
+            line-height: 140%;
+            letter-spacing: 4%;
+            text-transform: uppercase;
+            color: var(--text-light-grey); /* Light muted purple-grey */
+            margin-bottom: 12px;
+        }
+
+        .main-content footer .row .box a {
+            font-family: Host Grotesk;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 140%;
+            letter-spacing: 0%;
+            color: var(--text-light-grey); /* Light muted purple-grey */
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .main-content footer .row .box a:hover {
+            color: var(--white-color); /* Light pinkish white */
+        }
+
+        .main-content .bottomRow {
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .main-content .bottomRow .plusAge {
+            gap: 3px;
+        }
+
+        .main-content .bottomRow .plusAge {
+            gap: 4px;
+        }
+
+        .main-content .bottomRow .plusAge p {
+            font-weight: 400;
+            font-size: 14px;
+            color: var(--not-white); /* Soft light pink */
+        }
+
+        .main-content .bottomRow .bottomSubRow {
+            gap: 20px;
+        }
+
+        .main-content .bottomRow .bottomSubRow .horizontalUnderline {
+            min-height: 46.00000000000004px;
+            width: 1px;
+            background: var(--text-light-grey); /* Light muted purple-grey */
+        }
+
+        .main-content .bottomRow .bottomSubRow .paraText {
+            max-width: 620px;
+            width: 100%;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 100%;
+            color: var(--text-light-grey); /* Light muted purple-grey */
+        }
+
+        .main-content .bottomRow .bottomSubRow p.copyRight {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 122%;
+            color: var(--text-light-grey); /* Light muted purple-grey */
+        }
+
+        .main-content .bottomRow .bottomSubRow p.copyRight a {
+            color: var(--not-white); /* Soft light pink */
+        }
+
+        aside.sidebar.closed .branding {
+            display: none;
+        }
+
+        aside.sidebar .branding a {
+            display: flex;
+            align-items: center;
+            color: var(--text-light-grey); /* Light muted purple-grey */
+            text-decoration: none;
+            transition: all 0.3s ease;
+            gap: 10px;
+            padding: 10px 10px;
+            border-radius: 8px;
+            margin: 0px 10px;
+            margin-bottom: 5px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        aside.sidebar .branding a:hover{
+            color: var(--not-white); /* Soft light pink */
+            background: rgba(255, 105, 180, 0.2); /* Hot Pink with transparency */
+            box-shadow: 0px 1px 0px 0px rgba(255, 105, 180, 0.1) inset; /* Hot Pink with transparency */
+        }
+
+        .paraLineWidth{
+            width: 26px;
+        }
+
+        /* Animations from previous version */
+        @keyframes float {
+            0% {                transform: translateY(0px);            }
+            50% {                transform: translateY(-10px);            }
+            100% {                transform: translateY(0px);            }
+        }
+        @keyframes fadeIn {
+            0% {                opacity: 0;                transform: translateY(20px);            }
+            100% {                opacity: 1;                transform: translateY(0);            }
+        }
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+        .delay-400 {
+            animation-delay: 0.4s;
+        }
+        .delay-600 {
+            animation-delay: 0.6s;
+        }
+
+        /* Styles specific to leaderboards */
+        .site-coin-img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .winList {
+            margin-top: 20px;
+        }
+
+        .topWinList {
+            background-color: var(--dark-bg-sidebar); /* Using sidebar background for consistency */
+            padding: 10px 15px;
+            margin-bottom: 5px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid var(--border-color); /* Consistent border color */
+        }
+
+        .topWinList .box {
+            display: flex;
+            align-items: center;
+        }
+
+        .topWinList .subBox {
+            padding: 0 10px;
+        }
+
+        .topWinList .subBox.paraLineWidth {
+            width: 60px;
+            text-align: center;
+        }
+
+        .topWinList .subBox.imagePara {
+            display: flex;
+            align-items: center;
+        }
+
+        .topWinList .table-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 1px solid rgba(255, 105, 180, 0.5); /* Pink border for table avatars */
+        }
+
+        .topWinList .white {
+            color: var(--not-white); /* Soft light pink */
+            font-weight: bold;
+        }
+
+        .topWinList .purple {
+            color: var(--secondary-color); /* Hot pink */
+            font-weight: bold;
+        }
+
+        /* Media queries for responsive layout */
+        @media screen and (max-width: 915.98px) {
+            .main-content .winnerBoxes {
+                gap: 30px;
+                margin-bottom: 40px;
+            }
+
+            .timer {
+                margin-top: 6px;
+                margin-bottom: 70px;
+                transform: scale(1.2);
+            }
+
+            aside .nav-links li.active a img {
+                max-width: 22px;
+            }
+            
+            /* Improved footer for mobile */
+            .main-content footer {
+                padding: 30px 10px;
+            }
+            
+            .main-content footer .row {
+                width: 100%;
+                flex-direction: column;
+            }
+            
+            .main-content footer .row .box {
+                flex-wrap: wrap;
+                gap: 25px;
+                margin-bottom: 20px;
+            }
+            
+            .main-content footer .row .box .subBox {
+                min-width: 120px;
+            }
+
+            .main-content .bottomRow {
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+
+            .main-content .bottomRow .bottomSubRow {
+                flex-direction: column;
+                margin-bottom: 20px;
+                align-items: start;
+                width: 100%;
+            }
+
+            .main-content .bottomRow .bottomSubRow .horizontalUnderline {
+                min-height: 1px;
+                width: 100%;
+                background: var(--text-light-grey); /* Light muted purple-grey */
+                margin: 10px 0;
+            }
+            
+            .main-content .bottomRow .bottomSubRow .paraText {
+                font-size: 12px;
+                line-height: 1.4;
+                margin-top: 10px;
+            }
+            
+            .main-content .bottomRow .bottomSubRow .plusAge {
+                justify-content: center;
+                width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 499.98px) {
+            /* Improve header responsiveness */
+            .main-content .topRainCoin .left_knif,
+            .main-content .topRainCoin .right_gun {
+                width: 30%;
+            }
+
+            .main-content .topRainCoin .right_gun {
+                bottom: -30px;
+            }
+            
+            /* Fix table on mobile */
+            .main-content .winList .topWinList .paraLineWidth {
+                display: none; /* Hide rank column */
+            }
+            
+            .main-content .winList .topWinList.positionHolders .imagePara img {
+                display: none; /* Hide avatar images */
+            }
+            
+            .main-content .winList .topWinList.positionHolders .imagePara {
+                padding-left: 10px;
+            }
+            
+            /* Make site switchers better on mobile */
+            .main-content .pageShifter {
+                gap: 8px;
+            }
+            
+            .main-content .pageShifter .box {
+                max-width: 100px;
+                height: 70px;
+            }
+            
+            /* Better header for mobile */
+            .main-content .topRainCoin .topMain {
+                font-size: 52px;
+                line-height: 52px;
+            }
+            
+            .main-content .topRainCoin .coinDeatiling p {
+                font-size: 18px;
+            }
+            
+            /* Smaller prize boxes */
+            .main-content .winnerBoxes {
+                gap: 15px;
+            }
+            
+            .main-content .winnerBoxes .mainBox {
+                max-width: 180px;
+                min-height: 300px;
+            }
+            
+            .main-content .winnerBoxes .mainBox .box {
+                max-width: 180px;
+                min-height: 300px;
+            }
+        }
+
+        @media screen and (max-width: 660.98px) {
+            aside.sidebar {
+                position: fixed;
+            }
+        }
+
+        .table-avatar {
+            width: 32px;
+            height: 32px;
+        }
+
+        .top-winner-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid var(--secondary-color); /* Hot Pink border */
+        }
+    </style>
+</head>
+<body>
+    <div style="display: flex;" class="header">
+        <aside class="sidebar closed" id="sidebar">
+            <div class="min-hei">
+                <ul class="nav-links">
+                    <div class="flexGrid">
+                        <!-- Toggle Button -->
+                        <button class="toggle-btn" id="toggleBtn" aria-label="Toggle sidebar menu">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+                    </div>
+
+                    <li>
+                        <a href="/" class="logo"><span class="purple">Valerie</span><span class="white">Streamz</span></a>
+                    </li>
+
+                    <li>
+                        <a href="/" class="d-flex align-center">
+                            <img src="https://img.icons8.com/metro/26/F25081/home.png" alt="Home Icon" class="img-fluid"> <!-- Placeholder for Home SVG -->
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="disabled">
+                        <a href="/leaderboard" class="d-flex align-center">
+                            <span>Leaderboards</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/leaderboard/rainbet" class="d-flex align-center">
+                            <img src="https://i.ibb.co/99MX1zMz/image-removebg-preview-16.png" alt="Rain Icon" class="img-fluid"> <!-- Placeholder for Rain SVG -->
+                            <span>Rainbet</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <div class="container">
+                <div class="row">
+                    <div class="topRainCoin fade-in">
+                        <img src="https://i.ibb.co/kLjgz8m/image-removebg-preview-17.png" alt="Left Knife" class="img-fluid left_knif floating"> <!-- Placeholder for left_knif.png -->
+                        <div class="coinDeatiling d-flex align-center">
+                            <img src="https://placehold.co/24x24/FF69B4/FFFFFF?text=C" alt="Coin Icon" class="img-fluid site-coin-img"> <!-- Placeholder for rain-coin.svg -->
+                            <p class="site-amount"></p>
+                        </div>
+                        <h1 class="topMain">Leaderboard</h1>
+                        <img src="https://i.ibb.co/Lzw3KdFv/image-removebg-preview-18.png" alt="Right Gun" class="img-fluid right_gun floating"> <!-- Placeholder for right_gun.png -->
+                    </div>
+                    <div class="winnerBoxes d-flex align-center justify-center fade-in delay-400">
+                        <!-- Winner Box for 2nd Place (will be on the left for PC, or second for mobile) -->
+                        <div class="mainBox winner-box-2">
+                            <div class="box">
+                                <img src="https://i.ibb.co/99MX1zMz/image-removebg-preview-16.png" alt="" class="img-fluid winnerProfile top-winner-avatar winner-2-avatar"> <!-- Placeholder for winnerProfile.png -->
+                                <h1 class="winner-2-name">-</h1>
+                                <p>Total Wagered</p>
+                                <h2 class="winner-2-wager">-</h2>
+                                <img src="https://placehold.co/150x50/FF69B4/FFFFFF?text=2nd" alt="" class="img-fluid topWinner"> <!-- Placeholder for top-2.png -->
+                                <h6>Reward</h6>
+                                <h3 class="winner-2-prize">-</h3>
+                            </div>
+                        </div>
+
+                        <!-- Winner Box for 1st Place (central for PC, or first for mobile) -->
+                        <div class="mainBox winner-box-1">
+                            <div class="box">
+                                <img src="https://i.ibb.co/99MX1zMz/image-removebg-preview-16.png" alt="" class="img-fluid winnerProfile top-winner-avatar winner-1-avatar"> <!-- Placeholder for winnerProfile.png -->
+                                <h1 class="winner-1-name">-</h1>
+                                <p>Total Wagered</p>
+                                <h2 class="winner-1-wager">-</h2>
+                                <img src="https://placehold.co/150x50/FF69B4/FFFFFF?text=1st" alt="" class="img-fluid topWinner"> <!-- Placeholder for top-1.png -->
+                                <h6>Reward</h6>
+                                <h3 class="winner-1-prize">-</h3>
+                            </div>
+                            <!-- PC-only timer, displayed below the #1 winner box on desktop -->
+                            <div class="timer pc-only-timer">
+                                <h1>Ending In</h1>
+                                <div class="timerBox d-flex align-center">
+                                    <div class="primary-box">
+                                        <p id="days-pc">-</p>
+                                        <p class="purple">DAY</p>
+                                    </div>
+                                    <h3>:</h3>
+                                    <div class="primary-box">
+                                        <p id="hours-pc">-</p>
+                                        <p class="purple">HR</p>
+                                    </div>
+                                    <h3>:</h3>
+                                    <div class="primary-box">
+                                        <p id="minutes-pc">-</p>
+                                        <p class="purple">MIN</p>
+                                    </div>
+                                    <h3>:</h3>
+                                    <div class="primary-box">
+                                        <p id="seconds-pc">-</p>
+                                        <p class="purple">SEC</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Winner Box for 3rd Place (will be on the right for PC, or third for mobile) -->
+                        <div class="mainBox winner-box-3">
+                            <div class="box">
+                                <img src="https://i.ibb.co/99MX1zMz/image-removebg-preview-16.png" alt="" class="img-fluid winnerProfile top-winner-avatar winner-3-avatar"> <!-- Placeholder for winnerProfile.png -->
+                                <h1 class="winner-3-name">-</h1>
+                                <p>Total Wagered</p>
+                                <h2 class="winner-3-wager">-</h2>
+                                <img src="https://placehold.co/150x50/FF69B4/FFFFFF?text=3rd" alt="" class="img-fluid topWinner"> <!-- Placeholder for top-3.png -->
+                                <h6>Reward</h6>
+                                <h3 class="winner-3-prize">-</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Mobile-only timer, displayed below the winner boxes on mobile/tablet -->
+                <div class="row mobile-only-timer-container d-flex align-center justify-center">
+                    <div class="timer">
+                        <h1>Ending In</h1>
+                        <div class="timerBox d-flex align-center">
+                            <div class="primary-box">
+                                <p id="days-mobile">-</p>
+                                <p class="purple">DAY</p>
+                            </div>
+                            <h3>:</h3>
+                            <div class="primary-box">
+                                <p id="hours-mobile">-</p>
+                                <p class="purple">HR</p>
+                            </div>
+                            <h3>:</h3>
+                            <div class="primary-box">
+                                <p id="minutes-mobile">-</p>
+                                <p class="purple">MIN</p>
+                            </div>
+                            <h3>:</h3>
+                            <div class="primary-box">
+                                <p id="seconds-mobile">-</p>
+                                <p class="purple">SEC</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="winList" id="leaderboardList">
+                    <div class="topWinList d-flex align-center justify-between">
+                        <div class="box d-flex align-center">
+                            <div class="subBox paraLineWidth">
+                                <p>Rank</p>
+                            </div>
+                            <div class="subBox">
+                                <p>Name</p>
+                            </div>
+                        </div>
+                        <div class="box d-flex align-center widthCustom">
+                            <div class="subBox">
+                                <p>Wagered</p>
+                            </div>
+                            <div class="subBox">
+                                <p>Prize</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Leaderboard entries will be dynamically generated here by JavaScript -->
+                </div>
+            </div>
+            <footer>
+                <div class="container">
+                    <div class="row d-flex justify-between">
+                        <div class="box d-flex">
+                            <div class="subBox">
+                                <a href="/" class="logo"><span class="purple">Valerie</span><span>Streamz</span></a>
+                                <p class="logopara">© 2025 ValerieStreamz, All rights reserved.</p>
+                            </div>
+                            <div class="subBox">
+                                <h5>QUICK LINKS</h5>
+                                <a href="/">Home</a>
+                                <a href="/leaderboard/rainbet">Leaderboards</a>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <h5>Information</h5>
+                            <a href="https://www.instagram.com/valeriestreamz" target="_blank">Instagram</a>
+                            <a href="https://kick.com/ValerieStreamz" target="_blank">Kick</a>
+                            <a href="https://discord.gg/77wrYCKaVP" target="_blank">Discord</a>
+                        </div>
+                    </div>
+                    <div class="row bottomRow d-flex align-center justify-between">
+                        <div class="bottomSubRow d-flex align-center">
+                            <div class="plusAge d-flex align-center">
+                                <img src="https://placehold.co/30x30/FF69B4/FFFFFF?text=18+" alt="18+ icon" class="img-fluid"> <!-- Placeholder for plus18+.png -->
+                                <p>Responsible <br>Gambling</p>
+                            </div>
+                            <div class="horizontalUnderline"></div>
+                            <p class="paraText">We do not take responsibility for any losses from gambling in casinos
+                                and betting sites which are linked or promoted on our website(s). As a player, you are
+                                responsible for your bets.</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <!-- Integrated JavaScript for sidebar and leaderboard functionality -->
+    <script>
+        // Select elements for sidebar
+        const sidebar = document.getElementById('sidebar');
+        const toggleBtn = document.getElementById('toggleBtn');
+
+        // Toggle Sidebar with smooth animation
+        toggleBtn.addEventListener('click', () => {
+          // Add a small delay to make the transition smoother
+          setTimeout(() => {
+            sidebar.classList.toggle('closed');
+            
+            // Change icon
+            const icon = toggleBtn.querySelector('i');
+            if (sidebar.classList.contains('closed')) {
+              icon.classList.replace('fa-xmark', 'fa-bars');
+            } else {
+              icon.classList.replace('fa-bars', 'fa-xmark');
+            }
+            
+            // Add/remove aria-expanded attribute for accessibility
+            toggleBtn.setAttribute('aria-expanded', !sidebar.classList.contains('closed'));
+          }, 10);
+        });
+
+        // Initialize aria-expanded attribute for sidebar
+        toggleBtn.setAttribute('aria-expanded', !sidebar.classList.contains('closed'));
+
+        // PAUSE CONTROL - Set site names to true to pause specific leaderboards
+        const PAUSED_SITES = {
+            'rain': false,
+            'lootbox': true,
+        };
+
+        // Site configuration data
+        const SITE_CONFIG = {
+            'rain': {
+                coinImage: 'https://placehold.co/24x24/FF69B4/FFFFFF?text=C', // Placeholder for rain-coin.svg
+                smallImage: 'https://placehold.co/15x15/FF69B4/FFFFFF?text=R', // Placeholder for rain.png
+                wagerPrefix: '',
+                prizePrefix: '',
+                wagerSuffix: ' RAINBET',
+                prizeSuffix: ' RAINBET',
+                siteDisplay: 'RAINBET'
+            },
+            'lootbox': {
+                coinImage: '', // No coin image for lootbox
+                smallImage: 'https://placehold.co/15x15/FF69B4/FFFFFF?text=L', // Placeholder for lootbox.png
+                wagerPrefix: '$',
+                prizePrefix: '$',
+                wagerSuffix: '',
+                prizeSuffix: '',
+                siteDisplay: 'RAINBET'
+            }
+        };
+
+        // Define prizes for the leaderboard (customize as needed)
+        const LEADERBOARD_PRIZES = {
+            1: 200,
+            2: 150,
+            3: 75,
+            4: 50,
+            5: 25,
+            6: 0,
+            7: 0,
+            8: 0,
+            9: 0,
+            10: 0
+        };
+
+let DUMMY_LEADERBOARD_DATA = [];
+
+fetch("https://valeriedata.onrender.com/leaderboard/top14")
+  .then(res => res.json())
+  .then(data => {
+    DUMMY_LEADERBOARD_DATA = data;
+    console.log("Leaderboard loaded:", DUMMY_LEADERBOARD_DATA);
+    // Optionally call your rendering function here
+    loadLeaderboardData(); // or whatever you use to display it
+  })
+  .catch(err => {
+    console.error("Failed to fetch leaderboard data:", err);
+  });
+
+
+
+        // Leaderboard functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            // Determine the current site from the URL (e.g., /leaderboard/rain -> 'rain')
+            const pathname = window.location.pathname;
+            const pathSegments = pathname.split('/');
+            const currentSite = pathSegments[pathSegments.length - 1]; // Gets 'rain' or 'lootbox'
+
+            initLeaderboard(currentSite); // Pass current site to initialization
+
+            // Add event listeners to site switchers
+            document.querySelectorAll('.site-switcher').forEach(switcher => {
+                switcher.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const site = this.getAttribute('data-site');
+                    // This will ideally navigate to the correct leaderboard page or update content on the same page.
+                    // For this single HTML file example, we re-initialize the leaderboard based on the clicked site.
+                    initLeaderboard(site);
+                });
+            });
+        });
+
+        // Function to initialize the leaderboard for a given site
+        function initLeaderboard(site) {
+            // Set the active site in the sidebar and switcher
+            setActiveSite(site);
+
+            // Load leaderboard data for the specific site
+            loadLeaderboardData(site);
+
+            // Initialize countdown timer (global for the month, so no site specific timer is needed)
+            initCountdown(); 
+        }
+
+        function setActiveSite(site) {
+            // Remove active class from all sidebar navigation links
+            document.querySelectorAll('.sidebar li').forEach(li => {
+                li.classList.remove('active');
+            });
+
+            // Add active class to the current site link in the sidebar
+            const siteLink = document.querySelector(`.sidebar li a[href="/leaderboard/${site}"]`);
+            if (siteLink) {
+                siteLink.parentElement.classList.add('active');
+            } else {
+                // If on the base /leaderboard or unknown path, activate "Leaderboards" link
+                const genericLeaderboardLink = document.querySelector('.sidebar li a[href="/leaderboard"]');
+                if (genericLeaderboardLink) {
+                    genericLeaderboardLink.parentElement.classList.add('active');
+                }
+            }
+
+            // Set active class on site switcher buttons/links
+            document.querySelectorAll('.site-switcher').forEach(switcher => {
+                if (switcher.getAttribute('data-site') === site) {
+                    switcher.classList.add('active');
+                } else {
+                    switcher.classList.remove('active');
+                }
+            });
+
+            // Update site image and text in the main header
+            updateSiteHeader(site);
+        }
+
+        function updateSiteHeader(site) {
+            const config = SITE_CONFIG[site] || SITE_CONFIG.lootbox; // Default to lootbox if site config not found
+            const coinImage = document.querySelector('.coinDeatiling .site-coin-img');
+            const coinText = document.querySelector('.coinDeatiling .site-amount');
+
+            if (coinImage) {
+                // Hide coin image if no specific coin image is defined for the site (e.g., lootbox)
+                if (!config.coinImage) {
+                    coinImage.style.display = 'none';
+                } else {
+                    coinImage.style.display = ''; // Show it
+                    coinImage.src = config.coinImage;
+                }
+            }
+
+            // Initial text before data is loaded
+            if (coinText) {
+                coinText.textContent = `Loading... ${config.siteDisplay}`;
+            }
+        }
+
+        function loadLeaderboardData(site) {
+            // Check if this specific site's leaderboard is paused as per PAUSED_SITES config
+            if (PAUSED_SITES[site]) {
+                showPausedMessage(site);
+                return;
+            }
+
+            // --- IMPORTANT: Replace this dummy data fetch with your actual API call ---
+            // This section simulates fetching data from a backend. In a real application,
+            // you would make a `fetch` request to your API endpoint for the leaderboard data.
+            // Example:
+            // fetch(`YOUR_ACTUAL_API_ENDPOINT_HERE/leaderboard/${site}`)
+            //     .then(response => {
+            //         if (!response.ok) {
+            //             throw new Error(`HTTP error! status: ${response.status}`);
+            //         }
+            //         return response.json();
+            //     })
+            //     .then(data => {
+            //         // Data successfully fetched, now update the UI
+            //         updateLeaderboardUI(data, site);
+            //     })
+            //     .catch(error => {
+            //         console.error('Error fetching leaderboard data:', error);
+            //         // Display an error message to the user if data cannot be loaded
+            //         showErrorMessage("Could not load leaderboard data. Please try again later.");
+            //     });
+
+            // Using dummy data provided by the user for demonstration purposes:
+            setTimeout(() => {
+                // Process the dummy data to include prizes based on their rank
+                const processedData = DUMMY_LEADERBOARD_DATA.map((user, index) => {
+                    const rank = index + 1;
+                    return {
+                        ...user,
+                        // Assign prize from the LEADERBOARD_PRIZES map; default to 0 if no prize for rank
+                        prize: LEADERBOARD_PRIZES[rank] || 0 
+                    };
+                });
+                updateLeaderboardUI(processedData, site);
+            }, 500); // Simulate a short network delay for fetching data
+        }
+
+        function updateLeaderboardUI(data, site) {
+            // Check if data is valid and not empty
+            if (!data || data.length === 0) {
+                console.log("No leaderboard data to display.");
+                showNoDataMessage("No leaderboard data available for this category yet.");
+                return;
+            }
+
+            // Calculate the total prize pool by summing up all assigned prizes
+            const totalPrizePool = data.reduce((total, user) => total + (user.prize || 0), 0);
+
+            // Update the main header with the total prize amount for the current site
+            updatePrizePool(totalPrizePool, site);
+
+            // Update the top three winner sections
+            updateTopThreeWinners(data.slice(0, 3), site);
+
+            // Update the ranked list for positions 4 through 10
+            updateRankList(data.slice(3, 10), site); // Only slice up to 10 for the detailed table
+        }
+
+        // Updates the total prize pool displayed in the header
+        function updatePrizePool(totalPrizePool, site) {
+            const config = SITE_CONFIG[site] || SITE_CONFIG.lootbox;
+            const coinText = document.querySelector('.coinDeatiling .site-amount');
+
+            if (coinText) {
+                const formattedTotal = formatNumber(totalPrizePool);
+                coinText.textContent = `${config.prizePrefix}${formattedTotal} ${config.siteDisplay}`;
+            }
+        }
+
+        // Updates the display for the top three winners (1st, 2nd, and 3rd place)
+        function updateTopThreeWinners(topThree, site) {
+            const config = SITE_CONFIG[site] || SITE_CONFIG.lootbox;
+
+            // Helper function to apply updates to specific winner boxes based on rank
+            const updateSingleWinnerBox = (rank, winnerData) => {
+                const nameElements = document.querySelectorAll(`.winner-${rank}-name`);
+                const wagerElements = document.querySelectorAll(`.winner-${rank}-wager`);
+                const prizeElements = document.querySelectorAll(`.winner-${rank}-prize`);
+                const avatarElements = document.querySelectorAll(`.winner-${rank}-avatar`);
+
+                // Set text content for name, wager, and prize. Use '-' if no data.
+                nameElements.forEach(el => el.textContent = winnerData ? winnerData.username : '-');
+                wagerElements.forEach(el => el.textContent = winnerData ? `${config.wagerPrefix}${formatNumber(winnerData.wagered)}${config.wagerSuffix}` : '-');
+                prizeElements.forEach(el => el.textContent = winnerData ? `${config.prizePrefix}${formatNumber(winnerData.prize)}${config.prizeSuffix}` : '-');
+                
+                // Update avatar image. Use a placeholder if no specific winner data.
+                avatarElements.forEach(el => {
+                    // For now, using generic placeholders; ideally, this would be user-specific avatars
+                    el.src = winnerData ? `https://i.ibb.co/99MX1zMz/image-removebg-preview-16.png` : `https://i.ibb.co/99MX1zMz/image-removebg-preview-16.png`;
+                });
+            };
+
+            // Apply updates for each of the top 3 positions
+            updateSingleWinnerBox(1, topThree[0]); // First place
+            updateSingleWinnerBox(2, topThree[1]); // Second place
+            updateSingleWinnerBox(3, topThree[2]); // Third place
+        }
+
+        // Populates the ranked list (positions 4-10) dynamically
+        function updateRankList(rankers, site) {
+            const config = SITE_CONFIG[site] || SITE_CONFIG.lootbox;
+            const leaderboardList = document.getElementById('leaderboardList');
+
+            // Clear all previously added dynamic list items, but keep the initial header row.
+            // We iterate backwards to safely remove elements while the collection is live.
+            for (let i = leaderboardList.children.length - 1; i > 0; i--) {
+                leaderboardList.removeChild(leaderboardList.children[i]);
+            }
+
+            // Iterate over the provided rankers (from 4th position onwards) and create UI elements
+            rankers.forEach((user, index) => {
+                const rank = index + 4; // Calculate the actual rank (e.g., 0-indexed + 4 = rank 4)
+                if (rank > 10) return; // Ensure we only create elements up to rank 10
+
+                const listItem = document.createElement('div');
+                listItem.classList.add('topWinList', 'd-flex', 'align-center', 'justify-between', 'positionHolders');
+                listItem.innerHTML = `
+                    <div class="box d-flex align-center">
+                        <div class="subBox paraLineWidth">
+                            <p>#${rank}</p>
+                        </div>
+                        <div class="subBox d-flex align-center imagePara">
+                            <img src="https://i.ibb.co/99MX1zMz/image-removebg-preview-16.png" alt="Rank ${rank} Avatar" class="img-fluid table-avatar"> <!-- Placeholder for winner-X.png -->
+                            <p>${user.username}</p>
+                        </div>
+                    </div>
+                    <div class="box d-flex align-center widthCustom">
+                        <div class="subBox">
+                            <p class="white">${config.wagerPrefix}${formatNumber(user.wagered)}${config.wagerSuffix}</p>
+                        </div>
+                        <div class="subBox">
+                            <p class="purple">${config.prizePrefix}${formatNumber(LEADERBOARD_PRIZES[rank] || 0)}${config.prizeSuffix}</p>
+                        </div>
+                    </div>
+                `;
+                leaderboardList.appendChild(listItem); // Add the new list item to the leaderboard
+            });
+        }
+
+        // Displays a message when a specific leaderboard is paused
+        function showPausedMessage(site) {
+            const config = SITE_CONFIG[site] || SITE_CONFIG.lootbox;
+            const coinText = document.querySelector('.coinDeatiling .site-amount');
+            if (coinText) {
+                coinText.textContent = `${config.siteDisplay} Leaderboard is currently paused.`;
+            }
+
+            // Clear top winner display areas
+            document.querySelectorAll('.winnerBoxes .mainBox h1, .winnerBoxes .mainBox h2, .winnerBoxes .mainBox h3').forEach(el => el.textContent = '-');
+            document.querySelectorAll('.winnerBoxes .mainBox img.winnerProfile').forEach(el => el.src = 'https://i.ibb.co/99MX1zMz/image-removebg-preview-16.png');
+
+            // Clear all dynamic leaderboard list items, keeping only the header
+            const leaderboardList = document.getElementById('leaderboardList');
+            for (let i = leaderboardList.children.length - 1; i > 0; i--) {
+                leaderboardList.removeChild(leaderboardList.children[i]);
+            }
+
+            // Add a "paused" message to the list area
+            const pausedMessageDiv = document.createElement('div');
+            pausedMessageDiv.classList.add('topWinList', 'd-flex', 'align-center', 'justify-center');
+            pausedMessageDiv.style.cssText = 'padding: 20px; text-align: center; color: var(--not-white); border: none; background: none;';
+            pausedMessageDiv.innerHTML = `<p>This leaderboard is currently paused. Please check back later!</p>`;
+            leaderboardList.appendChild(pausedMessageDiv);
+        }
+
+        // Displays a message when no data is available for the leaderboard
+        function showNoDataMessage(message) {
+            const coinText = document.querySelector('.coinDeatiling .site-amount');
+            if (coinText) {
+                coinText.textContent = `No data available.`;
+            }
+
+            document.querySelectorAll('.winnerBoxes .mainBox h1, .winnerBoxes .mainBox h2, .winnerBoxes .mainBox h3').forEach(el => el.textContent = '-');
+            document.querySelectorAll('.winnerBoxes .mainBox img.winnerProfile').forEach(el => el.src = 'https://i.ibb.co/99MX1zMz/image-removebg-preview-16.png');
+
+            const leaderboardList = document.getElementById('leaderboardList');
+            for (let i = leaderboardList.children.length - 1; i > 0; i--) {
+                leaderboardList.removeChild(leaderboardList.children[i]);
+            }
+
+            const noDataMessageDiv = document.createElement('div');
+            noDataMessageDiv.classList.add('topWinList', 'd-flex', 'align-center', 'justify-center');
+            noDataMessageDiv.style.cssText = 'padding: 20px; text-align: center; color: var(--not-white); border: none; background: none;';
+            noDataMessageDiv.innerHTML = `<p>${message}</p>`;
+            leaderboardList.appendChild(noDataMessageDiv);
+        }
+
+        // Formats a number with commas for better readability (e.g., 100000 -> 100,000)
+        function formatNumber(num) {
+            // Return 'N/A' for null or undefined numbers to prevent errors
+            if (num === null || typeof num === 'undefined') {
+                return 'N/A';
+            }
+            return new Intl.NumberFormat('en-US').format(num);
+        }
+
+        // Countdown Timer Logic
+        let countdownInterval;
+
+        // Initializes or re-initializes the countdown timer
+function updateCountdown() {
+    const now = new Date(); // Local time
+    const utcNow = new Date(Date.UTC(
+        now.getUTCFullYear(),
+        now.getUTCMonth(),
+        now.getUTCDate(),
+        now.getUTCHours(),
+        now.getUTCMinutes(),
+        now.getUTCSeconds()
+    ));
+
+    // Get last day of current month in UTC
+    const lastDayOfCurrentMonth = new Date(Date.UTC(
+        utcNow.getUTCFullYear(),
+        utcNow.getUTCMonth() + 1,
+        0
+    ));
+
+    // Set target to 23:59:59 UTC of the last day
+    const targetDate = new Date(Date.UTC(
+        lastDayOfCurrentMonth.getUTCFullYear(),
+        lastDayOfCurrentMonth.getUTCMonth(),
+        lastDayOfCurrentMonth.getUTCDate(),
+        23, 59, 59
+    ));
+
+    const distance = targetDate - utcNow;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    const displayDays = String(days).padStart(2, '0');
+    const displayHours = String(hours).padStart(2, '0');
+    const displayMinutes = String(minutes).padStart(2, '0');
+    const displaySeconds = String(seconds).padStart(2, '0');
+
+    const daysPcEl = document.getElementById('days-pc');
+    const hoursPcEl = document.getElementById('hours-pc');
+    const minutesPcEl = document.getElementById('minutes-pc');
+    const secondsPcEl = document.getElementById('seconds-pc');
+
+    if (daysPcEl && hoursPcEl && minutesPcEl && secondsPcEl) {
+        daysPcEl.textContent = displayDays;
+        hoursPcEl.textContent = displayHours;
+        minutesPcEl.textContent = displayMinutes;
+        secondsPcEl.textContent = displaySeconds;
+    }
+
+    const daysMobileEl = document.getElementById('days-mobile');
+    const hoursMobileEl = document.getElementById('hours-mobile');
+    const minutesMobileEl = document.getElementById('minutes-mobile');
+    const secondsMobileEl = document.getElementById('seconds-mobile');
+
+    if (daysMobileEl && hoursMobileEl && minutesMobileEl && secondsMobileEl) {
+        daysMobileEl.textContent = displayDays;
+        hoursMobileEl.textContent = displayHours;
+        minutesMobileEl.textContent = displayMinutes;
+        secondsMobileEl.textContent = displaySeconds;
+    }
+
+    if (distance < 0) {
+        clearInterval(countdownInterval);
+        if (daysPcEl) daysPcEl.textContent = '00';
+        if (hoursPcEl) hoursPcEl.textContent = '00';
+        if (minutesPcEl) minutesPcEl.textContent = '00';
+        if (secondsPcEl) secondsPcEl.textContent = '00';
+        if (daysMobileEl) daysMobileEl.textContent = '00';
+        if (hoursMobileEl) hoursMobileEl.textContent = '00';
+        if (minutesMobileEl) minutesMobileEl.textContent = '00';
+        if (secondsMobileEl) secondsMobileEl.textContent = '00';
+
+        console.log("Leaderboard countdown ended! Resetting for next month...");
+        setTimeout(initCountdown, 5000);
+    }
+}
+function initCountdown() {
+    updateCountdown(); // Run once immediately
+    countdownInterval = setInterval(updateCountdown, 1000); // Run every second
+}
+
+
+    </script>
+</body>
+</html>
