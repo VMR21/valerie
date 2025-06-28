@@ -1177,6 +1177,78 @@
             border-radius: 50%;
             border: 2px solid var(--secondary-color); /* Hot Pink border */
         }
+        @media screen and (max-width: 500px) {
+  .welcome-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 0 12px;
+    text-align: center;
+  }
+
+  .welcome-content .left-image,
+  .welcome-content .right-image {
+    position: relative;
+    width: 80px;
+    height: auto;
+  }
+
+  .welcome-title {
+    font-size: 42px !important;
+    line-height: 1.2;
+    word-break: break-word;
+  }
+
+  .welcome-subtitle {
+    font-size: 16px;
+    line-height: 1.4;
+    max-width: 90vw;
+    word-wrap: break-word;
+  }
+
+  .leaderboard-button {
+    font-size: 14px;
+    padding: 10px 22px;
+    margin-top: 12px;
+  }
+
+  .winnerBoxes {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mainBox, .box {
+    max-width: 90%;
+    min-height: 240px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .winnerBoxes {
+    flex-direction: column !important;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+  }
+
+  .mainBox {
+    width: 90% !important;
+    max-width: 300px;
+    min-height: 260px;
+    margin: 0 auto;
+    order: 0; /* default */
+  }
+
+  .mainBox.first {
+    order: 1;
+  }
+  .mainBox.second {
+    order: 2;
+  }
+  .mainBox.third {
+    order: 3;
+  }
+}
+
     </style>
 </head>
 <body>
