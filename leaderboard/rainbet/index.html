@@ -1248,6 +1248,23 @@
     order: 3;
   }
 }
+@media screen and (max-width: 420px) {
+  .welcome-title {
+    font-size: 46px !important;
+  }
+  .welcome-subtitle {
+    font-size: 16px;
+  }
+  .leaderboard-button {
+    font-size: 14px;
+    padding: 10px 25px;
+  }
+  .main-content .winnerBoxes .mainBox,
+  .main-content .winnerBoxes .mainBox .box {
+    max-width: 160px;
+    min-height: 250px;
+  }
+}
 
     </style>
 </head>
@@ -1455,31 +1472,35 @@
     </div>
     <!-- Integrated JavaScript for sidebar and leaderboard functionality -->
     <script>
-        // Select elements for sidebar
-        const sidebar = document.getElementById('sidebar');
-        const toggleBtn = document.getElementById('toggleBtn');
+  const sidebar = document.getElementById('sidebar');
+  const toggleBtn = document.getElementById('toggleBtn');
+  const mainContent = document.getElementById('mainContent');
 
-        // Toggle Sidebar with smooth animation
-        toggleBtn.addEventListener('click', () => {
-          // Add a small delay to make the transition smoother
-          setTimeout(() => {
-            sidebar.classList.toggle('closed');
-            
-            // Change icon
-            const icon = toggleBtn.querySelector('i');
-            if (sidebar.classList.contains('closed')) {
-              icon.classList.replace('fa-xmark', 'fa-bars');
-            } else {
-              icon.classList.replace('fa-bars', 'fa-xmark');
-            }
-            
-            // Add/remove aria-expanded attribute for accessibility
-            toggleBtn.setAttribute('aria-expanded', !sidebar.classList.contains('closed'));
-          }, 10);
-        });
+  toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('closed');
+    sidebar.classList.toggle('open');
+    mainContent.classList.toggle('sidebar-open');
 
-        // Initialize aria-expanded attribute for sidebar
-        toggleBtn.setAttribute('aria-expanded', !sidebar.classList.contains('closed'));
+    const icon = toggleBtn.querySelector('i');
+    if (sidebar.classList.contains('closed')) {
+      icon.classList.replace('fa-xmark', 'fa-bars');
+    } else {
+      icon.classList.replace('fa-bars', 'fa-xmark');
+    }
+
+    toggleBtn.setAttribute('aria-expanded', !sidebar.classList.contains('closed'));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+      sidebar.classList.add('closed');
+      sidebar.classList.remove('open');
+      mainContent.classList.remove('sidebar-open');
+      toggleBtn.querySelector('i').classList.replace('fa-xmark', 'fa-bars');
+    }
+  });
+
+  toggleBtn.setAttribute('aria-expanded', !sidebar.classList.contains('closed'));
 
         // PAUSE CONTROL - Set site names to true to pause specific leaderboards
         const PAUSED_SITES = {
