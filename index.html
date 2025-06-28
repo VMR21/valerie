@@ -1193,6 +1193,180 @@
             border-radius: 50%;
             border: 2px solid var(--secondary-color); /* Hot Pink border */
         }
+        /* General Mobile Enhancements */
+
+/* For screens smaller than 916px (your existing breakpoint) */
+@media screen and (max-width: 915.98px) {
+  /* Ensure the main content adjusts when the sidebar is hidden/fixed */
+  body {
+    overflow-x: hidden; /* Prevent horizontal scroll due to fixed elements */
+  }
+
+  /* Make sidebar fixed and initially off-screen */
+  aside.sidebar {
+    position: fixed;
+    height: 100vh; /* Full viewport height */
+    left: -256px; /* Initially hidden off-screen */
+    top: 0;
+    transition: left 0.4s cubic-bezier(0.05, 0.7, 0.1, 1);
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+  }
+
+  aside.sidebar.open { /* Add a class 'open' when sidebar is active */
+    left: 0;
+  }
+
+  /* Adjust main content when sidebar is open to show it's active */
+  .main-content.sidebar-open {
+    /* You might want to overlay a semi-transparent background or push content */
+    filter: brightness(0.6); /* Example: Dim content behind sidebar */
+    pointer-events: none; /* Disable interaction with main content */
+  }
+
+  /* Toggle button positioning for mobile */
+  .toggle-btn {
+    position: fixed; /* Keep it visible */
+    top: 20px;
+    left: 20px;
+    z-index: 1000000000; /* Above sidebar */
+    margin-left: 0 !important; /* Override inline styles */
+  }
+
+  /* When sidebar is closed, the button needs to indicate it can open */
+  .toggle-btn i {
+    transform: rotate(0deg) !important; /* Ensure it's not rotated when closed */
+  }
+
+  aside.sidebar.open .toggle-btn i {
+    transform: rotate(180deg) !important; /* Rotate when sidebar is open */
+  }
+
+
+  /* General padding adjustments for smaller screens */
+  .container {
+    padding: 15px; /* Slightly more consistent padding */
+  }
+
+  /* Adjustments for winner boxes to prevent overflow */
+  .main-content .winnerBoxes {
+    justify-content: center; /* Center boxes when they wrap */
+    gap: 20px; /* Adjust gap for better spacing */
+  }
+
+  .main-content .winnerBoxes .mainBox {
+    flex-basis: auto; /* Allow flex items to shrink/grow based on content */
+    max-width: 250px; /* Set a reasonable max-width for individual boxes */
+    min-width: 150px; /* Ensure they don't get too small */
+  }
+
+  /* Page shifter layout on mobile */
+  .main-content .pageShifter {
+    justify-content: center; /* Center the buttons */
+    padding: 0 10px; /* Add some horizontal padding */
+  }
+}
+
+/* For screens smaller than 500px (your existing breakpoint) */
+@media screen and (max-width: 499.98px) {
+  /* Further adjust top section elements */
+  .main-content .topRainCoin .left_knif,
+  .main-content .topRainCoin .right_gun {
+    width: 25%; /* Slightly smaller for very small screens */
+    opacity: 0.8; /* Dim slightly */
+  }
+
+  .main-content .topRainCoin .right_gun {
+    bottom: -15px; /* Adjust vertical position to not cut off */
+  }
+
+  /* Table readability improvements */
+  .main-content .winList .topWinList .box {
+    flex-direction: column; /* Stack table headers vertically if needed */
+    align-items: flex-start; /* Align text to the start */
+  }
+
+  .main-content .winList .topWinList.positionHolders {
+    min-height: auto; /* Allow height to adjust */
+    padding: 10px 15px; /* More padding */
+  }
+
+  .main-content .winList .topWinList.positionHolders .imagePara {
+    flex-direction: row; /* Keep image and text inline */
+    align-items: center;
+    gap: 5px; /* Reduce gap */
+    width: 100%; /* Ensure it takes full width */
+  }
+
+  /* Adjust page shifter boxes for very small screens */
+  .main-content .pageShifter .box {
+    max-width: 80px; /* Make boxes slightly smaller */
+    height: 60px;
+    font-size: 10px; /* Adjust font size if text is present */
+  }
+
+  /* Timer scale adjustment */
+  .timer {
+    transform: scale(1); /* Reset scale if it's too large */
+    margin-bottom: 40px; /* Adjust spacing */
+  }
+
+  .timer .primary-box {
+    width: 35px; /* Smaller boxes for timer */
+    height: 35px;
+  }
+
+  .timer .primary-box p {
+    font-size: 14px; /* Smaller font for timer numbers */
+  }
+
+  .timer .primary-box p.purple {
+    font-size: 10px; /* Smaller font for timer labels */
+  }
+
+  .timer h3 {
+    font-size: 14px; /* Smaller font for separator */
+  }
+
+  /* Footer adjustments for super small screens */
+  .main-content footer .row .box {
+    flex-direction: column; /* Stack footer columns */
+    gap: 15px; /* Reduce gap between stacked items */
+    align-items: flex-start; /* Align content to the left */
+  }
+
+  .main-content footer .row .box .subBox {
+    min-width: unset; /* Remove min-width for full flexibility */
+    width: 100%; /* Allow sections to take full width */
+    text-align: center;
+  }
+
+  .main-content footer .logopara {
+    max-width: 100%; /* Allow paragraph to take full width */
+    text-align: center;
+  }
+
+  .main-content .bottomRow .bottomSubRow {
+    align-items: center; /* Center items if stacked vertically */
+  }
+}
+@media screen and (max-width: 420px) {
+  .welcome-title {
+    font-size: 46px !important;
+  }
+  .welcome-subtitle {
+    font-size: 16px;
+  }
+  .leaderboard-button {
+    font-size: 14px;
+    padding: 10px 25px;
+  }
+  .main-content .winnerBoxes .mainBox,
+  .main-content .winnerBoxes .mainBox .box {
+    max-width: 160px;
+    min-height: 250px;
+  }
+}
+
     </style>
 </head>
 <body>
@@ -1231,7 +1405,7 @@
         </aside>
 
         <!-- Main Content Area -->
-        <div class="main-content">
+        <div class="main-content" id="mainContent">
             <div class="container">
                 <div class="welcome-container">
                     <div class="welcome-content fade-in">
@@ -1296,32 +1470,37 @@
     </div>
     <!-- Script for sidebar functionality -->
     <script>
-        // Select elements
-        const sidebar = document.getElementById('sidebar');
-        const toggleBtn = document.getElementById('toggleBtn');
+  const sidebar = document.getElementById('sidebar');
+  const toggleBtn = document.getElementById('toggleBtn');
+  const mainContent = document.getElementById('mainContent');
 
-        // Toggle Sidebar with smooth animation
-        toggleBtn.addEventListener('click', () => {
-          // Add a small delay to make the transition smoother
-          setTimeout(() => {
-            sidebar.classList.toggle('closed');
-            
-            // Change icon
-            const icon = toggleBtn.querySelector('i');
-            if (sidebar.classList.contains('closed')) {
-              icon.classList.replace('fa-xmark', 'fa-bars');
-            } else {
-              icon.classList.replace('fa-bars', 'fa-xmark');
-            }
-            
-            // Add/remove aria-expanded attribute for accessibility
-            toggleBtn.setAttribute('aria-expanded', !sidebar.classList.contains('closed'));
-          }, 10);
-        });
+  toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('closed');
+    sidebar.classList.toggle('open');
+    mainContent.classList.toggle('sidebar-open');
 
-        // Initialize aria-expanded attribute
-        toggleBtn.setAttribute('aria-expanded', !sidebar.classList.contains('closed'));
-    </script>
+    const icon = toggleBtn.querySelector('i');
+    if (sidebar.classList.contains('closed')) {
+      icon.classList.replace('fa-xmark', 'fa-bars');
+    } else {
+      icon.classList.replace('fa-bars', 'fa-xmark');
+    }
+
+    toggleBtn.setAttribute('aria-expanded', !sidebar.classList.contains('closed'));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+      sidebar.classList.add('closed');
+      sidebar.classList.remove('open');
+      mainContent.classList.remove('sidebar-open');
+      toggleBtn.querySelector('i').classList.replace('fa-xmark', 'fa-bars');
+    }
+  });
+
+  toggleBtn.setAttribute('aria-expanded', !sidebar.classList.contains('closed'));
+</script>
+
     <script src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" xintegrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"9567308ddc6aff7a","version":"2025.6.2","r":1,"token":"2cdcfc36cee34be59873f3f4e6dc08ed","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' crossorigin="anonymous"></script>
 </body>
 </html>
